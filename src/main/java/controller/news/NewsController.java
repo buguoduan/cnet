@@ -1,9 +1,13 @@
 package controller.news;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import business.news.impl.NewServiceImpl;
 import business.news.service.NewService;
 
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 
 import entity.news.NewsInfo;
 
@@ -38,4 +42,26 @@ public class NewsController extends Controller {
 			renderJson("code", "查询异常");
 		}
 	}
+	
+	/**
+	  * @Discription:查询新闻列表
+	  * @return void
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月19日 下午2:49:19
+	 */
+	public void findNewList(){
+		try {
+			/**查询新闻详情*/
+			List<NewsInfo> newsInfo = this.newService.findNewList();
+			this.setAttr("news", newsInfo);
+			render("../WEB-INF/news/news_list.jsp");
+		}catch(Exception e){
+			e.printStackTrace();
+			renderJson("code", "查询异常");
+		}
+	}
+	
+	 public void addNew(){
+		render("../WEB-INF/news/add_new.jsp");
+	 }
 }
