@@ -98,18 +98,110 @@ public class NewsController extends Controller {
 					return; 
 			 }
 			 this.newService.publishNew(title, author, status, description, date);
-			 forwardAction("/news/findNewList");//转发
-//			 redirect("http://www.baidu.com");//重定向
+			 redirect("/news/findNewList");//重定向
 		 }catch(Exception e){
 			 e.printStackTrace();
 			 renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
 		 }
 	 }
 	 
+	 /**
+	   * @Discription:状态修改：发布新闻
+	   * @return void
+	   * @Author: zhouhezhen
+	   * @Date: 2015年11月27日 下午5:21:36
+	   * @ModifyUser：zhouhezhen
+	   * @ModifyDate: 2015年11月27日 下午5:21:36
+	  */
 	 public void publish(){
-		 
+		 try {
+				/** 获取参数 */
+				String newId = null;
+				try{
+					newId = (String) this.getPara("newId");
+				}catch(Exception e){
+					 e.printStackTrace();
+					 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
+					 return;
+				}
+				 /**参数校验*/
+				 if(StringUtil.isBlank(newId)){
+					renderJson(APIMessage.NEW_ID_ERROR.warpper());
+					return; 
+				 }
+				/**状态修改：发布新闻*/
+				this.newService.publish(newId);
+				redirect("/news/findNewList");
+			}catch(Exception e){
+				e.printStackTrace();
+				renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
+			}
 	 }
 	 
+	 /**
+	   * @Discription:状态修改：新闻草稿
+	   * @return void
+	   * @Author: zhouhezhen
+	   * @Date: 2015年11月27日 下午7:05:17
+	   * @ModifyUser：zhouhezhen
+	   * @ModifyDate: 2015年11月27日 下午7:05:17
+	  */
+	 public void draft(){
+		 try {
+				/** 获取参数 */
+				String newId = null;
+				try{
+					newId = (String) this.getPara("newId");
+				}catch(Exception e){
+					 e.printStackTrace();
+					 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
+					 return;
+				}
+				 /**参数校验*/
+				 if(StringUtil.isBlank(newId)){
+					renderJson(APIMessage.NEW_ID_ERROR.warpper());
+					return; 
+				 }
+				/**状态修改：新闻草稿*/
+				this.newService.draft(newId);
+				redirect("/news/findNewList");
+			}catch(Exception e){
+				e.printStackTrace();
+				renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
+			}
+	 }
 	 
+	 /**
+	   * @Discription:删除新闻
+	   * @return void
+	   * @Author: zhouhezhen
+	   * @Date: 2015年11月27日 下午7:06:40
+	   * @ModifyUser：zhouhezhen
+	   * @ModifyDate: 2015年11月27日 下午7:06:40
+	  */
+	 public void delete(){
+		 try {
+				/** 获取参数 */
+				String newId = null;
+				try{
+					newId = (String) this.getPara("newId");
+				}catch(Exception e){
+					 e.printStackTrace();
+					 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
+					 return;
+				}
+				 /**参数校验*/
+				 if(StringUtil.isBlank(newId)){
+					renderJson(APIMessage.NEW_ID_ERROR.warpper());
+					return; 
+				 }
+				/**删除新闻*/
+				this.newService.delete(newId);
+				redirect("/news/findNewList");
+			}catch(Exception e){
+				e.printStackTrace();
+				renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
+			}
+	 }
 	 
 }

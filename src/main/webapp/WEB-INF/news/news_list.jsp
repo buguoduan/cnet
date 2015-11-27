@@ -57,18 +57,20 @@
 											<td class="center">${n.STATUS}</td>
 											<td>
 											 	<div class="fm">
-											 		 	<a href="#" class="btn btn-primary btn-mini">Edit</a>
+											 		 	<input type="button" value="Edit" class="btn btn-primary btn-mini"
+														onclick="location.href='publish?newId=${n.ID}';" />
 											 		<c:choose>
 											 			<c:when test="${n.STATUS==0}">
-														 	<a href="publish" class="btn btn-success btn-mini">草稿</a>
+														 	<input type="button" value="发布" class="btn btn-success btn-mini"
+														onclick="location.href='publish?newId=${n.ID}';" />
 														</c:when>
 														<c:when	test="${n.STATUS==1}">
-														    <a href="edit" class="btn btn-success btn-mini">发布</a>
+														    <input type="button" value="草稿" class="btn btn-success btn-mini"
+														onclick="location.href='draft?newId=${n.ID}';"  />
 														</c:when>
-														<c:otherwise>
-														</c:otherwise>
 													</c:choose>
-													    <a href="#" class="btn btn-danger btn-mini">Delete</a>
+													    <input type="button" value="Delete" class="btn btn-danger btn-mini"
+														onclick="location.href='delete?newId=${n.ID}';"  />
 											    </div>
 										    </td>
 										</tr>

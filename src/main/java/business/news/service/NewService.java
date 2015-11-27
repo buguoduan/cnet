@@ -44,4 +44,37 @@ public interface NewService {
 	  * @ModifyDate: 2015年11月26日 下午5:05:22
 	 */
 	void publishNew(String title, String author,String status,String description,String date) throws Exception; 
+	/**
+	  * @Discription:状态修改：发布新闻
+	  * @param newId
+	  * @throws Exception
+	  * @return void
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午5:20:54
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午5:20:54
+	 */
+	void publish(String newId) throws Exception;
+	/**
+	  * @Discription:状态修改：新闻草稿
+	  * @param newId
+	  * @throws Exception
+	  * @return void
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午6:57:13
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午6:57:13
+	 */
+	void draft(String newId) throws Exception;
+	/**
+	  * @Discription:删除新闻
+	  * @param newId
+	  * @throws Exception
+	  * @return void
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午7:07:30
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午7:07:30
+	 */
+	void delete(String newId) throws Exception;
 }

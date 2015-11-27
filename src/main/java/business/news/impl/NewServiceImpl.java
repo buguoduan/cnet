@@ -5,11 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.jfinal.plugin.activerecord.Page;
 
 import entity.news.NewsInfo;
 import Exception.BusinessException;
-import Util.StringUtil;
 import base.APIMessage;
 import business.news.service.NewService;
 
@@ -37,8 +35,7 @@ public class NewServiceImpl implements NewService{
 	  * @see business.news.service.NewService#findNewList()
 	 */
 	public List<NewsInfo> findNewList() throws Exception {
-		System.out.println(1);
-		List<NewsInfo> news = NewsInfo.dao.find("select * from news_info");
+		List<NewsInfo> news = NewsInfo.dao.find("select * from news_info where delete_flag='N'");
  		return news;
 	}
 	/**
@@ -72,9 +69,75 @@ public class NewServiceImpl implements NewService{
 			newsInfo.save();
 		} catch (Exception e) {
 			e.printStackTrace();
-			//说说评论失败
+			//新闻发布失败
 			throw new BusinessException(APIMessage.NEW_PUBLISH_ERROR);
 		}
 	}
-
+	
+	/**
+	  * @Discription:状态修改：发布新闻
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午5:22:07
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午5:22:07
+	  * @see business.news.service.NewService#publish(java.lang.String)
+	 */
+	public void publish(String newId) throws Exception {
+		try{
+			//根据新闻ID查询新闻详情
+			NewsInfo newsInfo = NewsInfo.dao.findById(newId);
+			newsInfo.set("STATUS","1");
+			newsInfo.set("ID", newId);
+			newsInfo.update();
+		}catch (Exception e) {
+			e.printStackTrace();
+			//新闻状态修改失败
+			throw new BusinessException(APIMessage.NEW_STATUS_EDIT_ERROR);
+		}
+	}
+	
+	/**
+	  * @Discription:状态修改：新闻草稿
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午7:00:50
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午7:00:50
+	  * @see business.news.service.NewService#draft(java.lang.String)
+	 */
+	public void draft(String newId) throws Exception {
+		try{
+			//根据新闻ID查询新闻详情
+			NewsInfo newsInfo = NewsInfo.dao.findById(newId);
+			newsInfo.set("STATUS","0");
+			newsInfo.set("ID", newId);
+			newsInfo.update();
+		}catch (Exception e) {
+			e.printStackTrace();
+			//新闻状态修改失败
+			throw new BusinessException(APIMessage.NEW_STATUS_EDIT_ERROR);
+		}
+	}
+	
+	/**
+	  * @Discription:删除新闻
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月27日 下午7:09:05
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月27日 下午7:09:05
+	  * @see business.news.service.NewService#delete(java.lang.String)
+	 */
+	public void delete(String newId) throws Exception {
+		try{
+			//根据新闻ID查询新闻详情
+			NewsInfo newsInfo = NewsInfo.dao.findById(newId);
+			newsInfo.set("DELETE_FLAG","Y");
+			newsInfo.set("ID", newId);
+			newsInfo.update();
+		}catch (Exception e) {
+			e.printStackTrace();
+			//新闻状态修改失败
+			throw new BusinessException(APIMessage.NEW_DELETE_ERROR);
+		}
+	}
+	
 }

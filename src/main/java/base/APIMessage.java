@@ -33,7 +33,19 @@ public enum APIMessage {
 	/**
 	 * @Field: NEW_PUBLISH_ERROR:新闻新增异常
 	 */
-	NEW_PUBLISH_ERROR("1001");
+	NEW_PUBLISH_ERROR("1001"),
+	/**
+	 * @Field: NEW_ID_ERROR:新闻ID不能为空
+	 */
+	NEW_ID_ERROR("1002"),
+	/**
+	 * @Field: NEW_STATUS_EDIT_ERROR:新闻状态修改失败
+	 */
+	NEW_STATUS_EDIT_ERROR("1003"),
+	/**
+	 * @Field: NEW_DELETE_ERROR:新闻删除失败
+	 */
+	NEW_DELETE_ERROR("1004");
 	
 	/**
 	 * 常量对应code
