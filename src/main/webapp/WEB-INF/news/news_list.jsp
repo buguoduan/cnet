@@ -42,6 +42,7 @@
 										<th>创建时间</th>
 										<th>作者</th>
 										<th>状态</th>
+										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -49,13 +50,29 @@
 										<tr class="gradeX">
 											<td><input type="checkbox" name="check_user" /></td>
 											<td>${n.TITLE}</td>
-											<td>${n.CREATE_DATE}</td>
+											<td>
+											<fmt:formatDate value="${n.CREATE_DATE}" pattern="yyyy-M-d" />
+											</td>
 											<td>${n.AUTHOR}</td>
 											<td class="center">${n.STATUS}</td>
+											<td>
+											 	<div class="fm">
+											 		 	<a href="#" class="btn btn-primary btn-mini">Edit</a>
+											 		<c:choose>
+											 			<c:when test="${n.STATUS==0}">
+														 	<a href="publish" class="btn btn-success btn-mini">草稿</a>
+														</c:when>
+														<c:when	test="${n.STATUS==1}">
+														    <a href="edit" class="btn btn-success btn-mini">发布</a>
+														</c:when>
+														<c:otherwise>
+														</c:otherwise>
+													</c:choose>
+													    <a href="#" class="btn btn-danger btn-mini">Delete</a>
+											    </div>
+										    </td>
 										</tr>
 									</c:forEach>
-
-
 								</tbody>
 							</table>
 						</div>

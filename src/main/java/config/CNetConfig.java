@@ -47,7 +47,6 @@ public class CNetConfig extends JFinalConfig{
 	  * @see com.jfinal.config.JFinalConfig#configInterceptor(com.jfinal.config.Interceptors)
 	 */
 	public void configInterceptor(Interceptors arg0) {
-
 	}
 	
 	/**

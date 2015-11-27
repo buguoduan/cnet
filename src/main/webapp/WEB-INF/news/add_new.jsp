@@ -6,8 +6,8 @@
 <html lang="en">
 <head>
 <title>数据表格页面_后台管理系统模板CNET</title>
-<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
 </head>
 <body>
 
@@ -29,35 +29,35 @@
           <h5>Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form action="publishNew" method="get" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">title :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="title" />
+                <input type="text" id="title" name="title" class="span11" placeholder="title" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Author Name :</label>
               <div class="controls">
-                <input type="text"  placeholder="Author Name" />
+                <input type="text" id="author" name="author" placeholder="Author Name" />
               </div>
             </div>
 			 <div class="control-group">
               <label class="control-label">Date Picker (mm-dd)</label>
               <div class="controls">
                 <div  data-date="12-02-2012" class="input-append date datepicker">
-                  <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                  <input type="text" id="date" name="date"  value="12/02/2012"  data-date-format="mm-dd-yyyy" class="span11" >
                   <span class="add-on"><i class="icon-th"></i></span> </div>
               </div>
             </div>
 			<div class="control-group">
-              <label for="checkboxes" class="control-label">Data Radio button</label>
+              <label class="control-label">radio</label>
               <div class="controls">
-                <div data-toggle="buttons-radio" class="btn-group">
-                  <button class="btn btn-primary" type="button">Left</button>
-                  <button class="btn btn-primary" type="button">Middle</button>
-                  <button class="btn btn-primary" type="button">Right</button>
-                </div>
+                <label>
+                  <input type="radio" name="status" id="fabu" value="0" checked="checked"/>
+                  	草稿  </label><label>
+                  <input type="radio" name="status" id="caogao" value="1"/>
+                  	发布</label>
               </div>
             </div>
             <div class="control-group">
@@ -70,7 +70,7 @@
          <div class="widget-content">
         <div class="control-group">
             <div >
-              <textarea class="textarea_editor span12" rows="6" placeholder="Enter text ..."></textarea>
+              <textarea class="textarea_editor span12" id="description" name="description" rows="6" placeholder="Enter text ..."></textarea>
             </div>
         </div>
   </div>

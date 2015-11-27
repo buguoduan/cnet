@@ -1,13 +1,13 @@
 package controller.news;
 
-import java.sql.Timestamp;
 import java.util.List;
 
+import Util.StringUtil;
+import base.APIMessage;
 import business.news.impl.NewServiceImpl;
 import business.news.service.NewService;
 
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Page;
 
 import entity.news.NewsInfo;
 
@@ -15,7 +15,7 @@ import entity.news.NewsInfo;
 
 public class NewsController extends Controller {
 	
-	private static NewService newService = new NewServiceImpl();
+	private NewService newService = new NewServiceImpl();
 	
 	/**
 	  * @Discription:查询新闻详情
@@ -61,7 +61,55 @@ public class NewsController extends Controller {
 		}
 	}
 	
+	/**
+	  * @Discription:跳转到添加新闻页面
+	  * @return void
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月26日 下午2:03:01
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月26日 下午2:03:01
+	 */
 	 public void addNew(){
 		render("../WEB-INF/news/add_new.jsp");
 	 }
+	 
+	 public void publishNew(){
+		 try{
+			 /** 获取参数 */
+			 String title = null;
+			 String author = null;
+			 String date = null;
+			 String status = null;
+			 String description = null;
+			 try{
+				  title =this.getPara("title");
+				  author =this.getPara("author");
+				  date =this.getPara("date");
+				  status = this.getPara("status");
+				  description = this.getPara("description");
+			 }catch(Exception e){
+				 e.printStackTrace();
+				 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
+				 return;
+			 }
+			 /**参数校验*/
+			 if(StringUtil.isBlank(title)){
+				 renderJson(APIMessage.NEW_TITLE_ERROR.warpper());
+					return; 
+			 }
+			 this.newService.publishNew(title, author, status, description, date);
+			 forwardAction("/news/findNewList");//转发
+//			 redirect("http://www.baidu.com");//重定向
+		 }catch(Exception e){
+			 e.printStackTrace();
+			 renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
+		 }
+	 }
+	 
+	 public void publish(){
+		 
+	 }
+	 
+	 
+	 
 }
