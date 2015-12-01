@@ -49,7 +49,7 @@
 									<c:forEach items="${news}" var="n">
 										<tr class="gradeX">
 											<td><input type="checkbox" name="check_user" /></td>
-											<td>${n.TITLE}</td>
+											<td><a href="findDetail?newId=${n.ID}">${n.TITLE}</a></td>
 											<td>
 											<fmt:formatDate value="${n.CREATE_DATE}" pattern="yyyy-M-d" />
 											</td>
@@ -88,6 +88,8 @@
 		<div id="footer" class="span12">2013 &copy; MatAdmin.</div>
 	</div>
 	<!--end-Footer-part-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/uniform.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/select2.css" />
 	<jsp:include page="/WEB-INF/include/css.jsp" />
 	<jsp:include page="/WEB-INF/include/js.jsp" />
 	<script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>

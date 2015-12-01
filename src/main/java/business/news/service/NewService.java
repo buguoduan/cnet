@@ -77,4 +77,17 @@ public interface NewService {
 	  * @ModifyDate: 2015年11月27日 下午7:07:30
 	 */
 	void delete(String newId) throws Exception;
+	
+	/**
+	  * @Discription:查看新闻详情
+	  * @param id
+	  * @return
+	  * @throws Exception
+	  * @return NewsInfo
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月30日 上午10:02:03
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月30日 上午10:02:03
+	 */
+	NewsInfo findDetail(String id) throws Exception;
 }

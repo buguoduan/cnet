@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-
 import entity.news.NewsInfo;
 import Exception.BusinessException;
 import base.APIMessage;
@@ -138,6 +137,27 @@ public class NewServiceImpl implements NewService{
 			//新闻状态修改失败
 			throw new BusinessException(APIMessage.NEW_DELETE_ERROR);
 		}
+	}
+	
+	/**
+	  * @Discription:查看新闻详情
+	  * @Author: zhouhezhen
+	  * @Date: 2015年11月30日 上午10:03:23
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年11月30日 上午10:03:23
+	  * @see business.news.service.NewService#findDetail(java.lang.String)
+	 */
+	public NewsInfo findDetail(String id) throws Exception {
+		NewsInfo newsInfo = null;
+		try{
+			//根据新闻ID查询新闻详情
+			newsInfo = NewsInfo.dao.findById(id);
+		}catch (Exception e) {
+			e.printStackTrace();
+			//新闻查询失败
+			throw new BusinessException(APIMessage.NEW_FINDDETAIL_ERROR);
+		}
+		return newsInfo;
 	}
 	
 }

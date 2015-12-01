@@ -204,4 +204,38 @@ public class NewsController extends Controller {
 			}
 	 }
 	 
+	 /**
+	   * @Discription:新闻详情
+	   * @return void
+	   * @Author: zhouhezhen
+	   * @Date: 2015年11月30日 上午10:00:46
+	   * @ModifyUser：zhouhezhen
+	   * @ModifyDate: 2015年11月30日 上午10:00:46
+	  */
+	 public void findDetail(){
+		 try {
+				/** 获取参数 */
+				String newId = null;
+				try{
+					newId = (String) this.getPara("newId");
+				}catch(Exception e){
+					 e.printStackTrace();
+					 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
+					 return;
+				}
+				 /**参数校验*/
+				 if(StringUtil.isBlank(newId)){
+					renderJson(APIMessage.NEW_ID_ERROR.warpper());
+					return; 
+				 }
+				/**删除新闻*/
+				NewsInfo NewsInfo = this.newService.findDetail(newId);
+				this.setAttr("new" , NewsInfo );
+				render("../WEB-INF/news/new_info.jsp");
+			}catch(Exception e){
+				e.printStackTrace();
+				renderJson("code",APIMessage.SYS_UNKNOW_ERROR.warpper());
+			}
+	 }
+	 
 }

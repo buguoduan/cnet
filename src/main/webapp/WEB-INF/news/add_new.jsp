@@ -93,6 +93,8 @@
   <div id="footer" class="span12"> 2013 &copy; MatAdmin.</div>
 </div>
 <!--end-Footer-part-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/uniform.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/select2.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorpicker.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-wysihtml5.css" />

@@ -45,7 +45,11 @@ public enum APIMessage {
 	/**
 	 * @Field: NEW_DELETE_ERROR:新闻删除失败
 	 */
-	NEW_DELETE_ERROR("1004");
+	NEW_DELETE_ERROR("1004"),
+	/**
+	 * @Field: NEW_FINDDETAIL_ERROR:新闻详情查询失败
+	 */
+	NEW_FINDDETAIL_ERROR("1005");
 	
 	/**
 	 * 常量对应code
