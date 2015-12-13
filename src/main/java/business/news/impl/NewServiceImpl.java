@@ -46,7 +46,7 @@ public class NewServiceImpl implements NewService{
 	  * @see business.news.service.NewService#publishNew(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public void publishNew(String title, String author, String status,
-			String description, String date) throws Exception {
+			String description, String date,String cover) throws Exception {
 		/**生成主键id*/
 		String id = UUID.randomUUID().toString();
 		try{
@@ -55,6 +55,7 @@ public class NewServiceImpl implements NewService{
 			newsInfo.set("TITLE", title);
 			newsInfo.set("AUTHOR", author);
 			newsInfo.set("DESCRIPTION", description);
+			newsInfo.set("cover",cover);
 			if(date!=null){
 				SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 				Date create_time = format.parse(date);

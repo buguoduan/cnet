@@ -29,7 +29,7 @@
           <h5>Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="publishNew" method="get" class="form-horizontal">
+          <form action="publishNew" method="post" class="form-horizontal" enctype="multipart/form-data">
             <div class="control-group">
               <label class="control-label">title :</label>
               <div class="controls">
@@ -63,7 +63,7 @@
             <div class="control-group">
               <label class="control-label">File upload input</label>
               <div class="controls">
-                <input type="file" />
+                <input type="file" name="file" id="file"/>
               </div>
             </div>
             <div class="row-fluid">

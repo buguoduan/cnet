@@ -1,5 +1,6 @@
 package controller.news;
 
+import java.io.File;
 import java.util.List;
 
 import Util.StringUtil;
@@ -8,6 +9,7 @@ import business.news.impl.NewServiceImpl;
 import business.news.service.NewService;
 
 import com.jfinal.core.Controller;
+import com.jfinal.upload.UploadFile;
 
 import entity.news.NewsInfo;
 
@@ -73,6 +75,14 @@ public class NewsController extends Controller {
 		render("../WEB-INF/news/add_new.jsp");
 	 }
 	 
+	 /**
+	   * @Discription:添加新闻
+	   * @return void
+	   * @Author: zhouhezhen
+	   * @Date: 2015年12月2日 上午9:25:33
+	   * @ModifyUser：zhouhezhen
+	   * @ModifyDate: 2015年12月2日 上午9:25:33
+	  */
 	 public void publishNew(){
 		 try{
 			 /** 获取参数 */
@@ -81,12 +91,18 @@ public class NewsController extends Controller {
 			 String date = null;
 			 String status = null;
 			 String description = null;
+			 String cover = null;
 			 try{
 				  title =this.getPara("title");
 				  author =this.getPara("author");
 				  date =this.getPara("date");
 				  status = this.getPara("status");
 				  description = this.getPara("description");
+				  UploadFile uf =getFile("file","D:/Users");
+				  String Title = uf.getFileName();
+				  Long length = uf.getFile().length();
+				  System.out.println(uf.getSaveDirectory() +File.separator + uf.getFileName());
+				  System.out.println( uf.getOriginalFileName() );
 			 }catch(Exception e){
 				 e.printStackTrace();
 				 renderJson(APIMessage.SYS_PARSE_PARAM_ERROR.warpper());
@@ -97,7 +113,7 @@ public class NewsController extends Controller {
 				 renderJson(APIMessage.NEW_TITLE_ERROR.warpper());
 					return; 
 			 }
-			 this.newService.publishNew(title, author, status, description, date);
+			 this.newService.publishNew(title, author, status, description, date, cover);
 			 redirect("/news/findNewList");//重定向
 		 }catch(Exception e){
 			 e.printStackTrace();

@@ -43,7 +43,7 @@ public interface NewService {
 	  * @ModifyUser：zhouhezhen
 	  * @ModifyDate: 2015年11月26日 下午5:05:22
 	 */
-	void publishNew(String title, String author,String status,String description,String date) throws Exception; 
+	void publishNew(String title, String author,String status,String description,String date,String cover) throws Exception; 
 	/**
 	  * @Discription:状态修改：发布新闻
 	  * @param newId
